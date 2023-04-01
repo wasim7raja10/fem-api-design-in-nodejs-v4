@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 
 import router from "./router";
+import { protect } from "./modules/auth";
 
 const app = express();
 
@@ -16,6 +17,6 @@ app.get("/", (req, res) => {
 	res.status(200).json({ message: "Hello from Express!" });
 });
 
-app.use("/api", router);
+app.use("/api", protect, router);
 
 export default app;
